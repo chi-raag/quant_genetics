@@ -1,0 +1,252 @@
+\PassOptionsToPackage{unicode=true}{hyperref} % options for packages loaded elsewhere
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[]{article}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\usepackage{fixltx2e} % provides \textsubscript
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provides euro and other symbols
+\else % if luatex or xelatex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase}
+\fi
+% use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+% use microtype if available
+\IfFileExists{microtype.sty}{%
+\usepackage[]{microtype}
+\UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\IfFileExists{parskip.sty}{%
+\usepackage{parskip}
+}{% else
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+}
+\usepackage{hyperref}
+\hypersetup{
+            pdftitle={Reflection I},
+            pdfauthor={Chiraag Gohel},
+            pdfborder={0 0 0},
+            breaklinks=true}
+\urlstyle{same}  % don't use monospace font for urls
+\usepackage[margin=1in]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{longtable,booktabs}
+% Fix footnotes in tables (requires footnote package)
+\IfFileExists{footnote.sty}{\usepackage{footnote}\makesavenoteenv{longtable}}{}
+\usepackage{graphicx,grffile}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+\setlength{\emergencystretch}{3em}  % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{0}
+% Redefines (sub)paragraphs to behave more like sections
+\ifx\paragraph\undefined\else
+\let\oldparagraph\paragraph
+\renewcommand{\paragraph}[1]{\oldparagraph{#1}\mbox{}}
+\fi
+\ifx\subparagraph\undefined\else
+\let\oldsubparagraph\subparagraph
+\renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
+
+% set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+
+
+\title{Reflection I}
+\author{Chiraag Gohel}
+\date{2/14/2020}
+
+\begin{document}
+\maketitle
+
+\hypertarget{machine-learning-in-genetics-and-genomics}{%
+\subsection{Machine Learning in Genetics and
+Genomics}\label{machine-learning-in-genetics-and-genomics}}
+
+Both bioinformatics and biostatistics departments have, over the past
+decade, invested into the development of machine learning and
+statistical methods for the analysis of genomic data. This data varies
+in its scope, and could range from population genetics information, to
+microbiome data. Algorithms such as PhyloWGS and Canopy seek to model
+tumor evolution from multi sampled cell sequencing data. These models
+find SNV's between samples, and attempt to recreate a phylogeny. My next
+reflection plans to go more in depth into newer biostatistical methods
+in genetics and genomics.
+
+\hypertarget{gene-expression-prediction}{%
+\subsection{Gene Expression
+Prediction}\label{gene-expression-prediction}}
+
+3 years ago, the Tampere University of Technology released a competition
+involving the prediction of gene expression from histone modification
+signals. Even currently, predicting gene expression from histone
+modication signals is a widely studied research topic. The dataset
+associated with the dataset is on Primary T CD8+ naive cells from
+peripheral blood, or the E047 celltype. Such data was obtained from the
+Roadmap Epigenomics Mapping Consortium database.
+
+The dataset consists of training data that consists of:
+
+\begin{itemize}
+\tightlist
+\item
+  A set of data including the analysis of five core histone modification
+  marks for a multitude of genes, diving the 10,000 basepair DNA regions
+  around the transcription start site into binds of length 100 basepairs
+\item
+  A set of data with each gene, and whether it demonstrates high
+  expression levels, or low expression levels
+\end{itemize}
+
+My plan is to use the training data provided to create a model, which
+will be used to predict the gene expression levels for the provided test
+data set. I will also present the methods used by winning teams for this
+competition. Elementary data visualization is presented below:
+
+\hypertarget{summary-statistics}{%
+\subsubsection{Summary Statistics}\label{summary-statistics}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{kable}\NormalTok{(}\KeywordTok{summary}\NormalTok{(x_train))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{longtable}[]{@{}lcccccc@{}}
+\toprule
+& GeneId & H3K4me3 & H3K4me1 & H3K36me3 & H3K9me3 &
+H3K27me3\tabularnewline
+\midrule
+\endhead
+& Min. : 1 & Min. : 0.000 & Min. : 0.000 & Min. : 0.000 & Min. : 0.0 &
+Min. : 0.000\tabularnewline
+& 1st Qu.: 3872 & 1st Qu.: 0.000 & 1st Qu.: 0.000 & 1st Qu.: 0.000 & 1st
+Qu.: 0.0 & 1st Qu.: 0.000\tabularnewline
+& Median : 7743 & Median : 1.000 & Median : 1.000 & Median : 2.000 &
+Median : 1.0 & Median : 1.000\tabularnewline
+& Mean : 7743 & Mean : 1.628 & Mean : 1.534 & Mean : 3.368 & Mean : 5.1
+& Mean : 1.119\tabularnewline
+& 3rd Qu.:11614 & 3rd Qu.: 2.000 & 3rd Qu.: 2.000 & 3rd Qu.: 4.000 & 3rd
+Qu.: 3.0 & 3rd Qu.: 2.000\tabularnewline
+& Max. :15485 & Max. :163.000 & Max. :93.000 & Max. :106.000 & Max.
+:161.0 & Max. :170.000\tabularnewline
+\bottomrule
+\end{longtable}
+
+\hypertarget{finding-the-average-value-for-h34kme3-for-each-gene-over-sampled-sites-and-visualizing-its-effects-on-gene-expression}{%
+\subsubsection{Finding the average value for `H34KME3' for each gene
+over sampled sites, and visualizing its effects on gene
+expression}\label{finding-the-average-value-for-h34kme3-for-each-gene-over-sampled-sites-and-visualizing-its-effects-on-gene-expression}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{avg_values <-}\StringTok{ }\NormalTok{x_train }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{group_by}\NormalTok{(GeneId) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{summarize}\NormalTok{(}\DataTypeTok{h34kme3 =} \KeywordTok{mean}\NormalTok{(H3K4me3)) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{full_join}\NormalTok{(y_train, }\DataTypeTok{by =} \StringTok{"GeneId"}\NormalTok{)}
+
+\KeywordTok{ggplot}\NormalTok{(avg_values, }\KeywordTok{aes}\NormalTok{(h34kme3, Prediction)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_jitter}\NormalTok{(}\DataTypeTok{alpha =} \FloatTok{.4}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{title =} \StringTok{"Gene Expression by Histone Level"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{reflection_i_files/figure-latex/unnamed-chunk-2-1.pdf}
+
+We see that lower gene expression is somewhat correlated with higher
+histone values for this specific histone.
+
+\hypertarget{linear-regression}{%
+\subsubsection{Linear Regression}\label{linear-regression}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{model}\FloatTok{.1}\NormalTok{ <-}\StringTok{ }\KeywordTok{glm}\NormalTok{(Prediction }\OperatorTok{~}\StringTok{ }\NormalTok{h34kme3, }\DataTypeTok{data =}\NormalTok{ avg_values)}
+\KeywordTok{summary}\NormalTok{(model}\FloatTok{.1}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Call:
+## glm(formula = Prediction ~ h34kme3, data = avg_values)
+## 
+## Deviance Residuals: 
+##     Min       1Q   Median       3Q      Max  
+## -0.7646  -0.4602   0.2824   0.3795   3.3640  
+## 
+## Coefficients:
+##              Estimate Std. Error t value Pr(>|t|)    
+## (Intercept)  0.764555   0.005640  135.56   <2e-16 ***
+## h34kme3     -0.161904   0.002661  -60.84   <2e-16 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## (Dispersion parameter for gaussian family taken to be 0.2017944)
+## 
+##     Null deviance: 3871.2  on 15484  degrees of freedom
+## Residual deviance: 3124.4  on 15483  degrees of freedom
+## AIC: 19165
+## 
+## Number of Fisher Scoring iterations: 2
+\end{verbatim}
+
+Our model shows, with significance, that levels of the H34KME3 histone
+is negatively correlated with gene expression.
+
+\end{document}

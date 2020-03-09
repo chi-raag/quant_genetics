@@ -1,0 +1,63 @@
+---
+title: "Reflection I"
+author: "Chiraag Gohel"
+date: "2/14/2020"
+output:
+  html_document:
+    df_print: paged
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = T)
+library(tidyverse)
+library(knitr)
+x_train <- read.csv("x_train.csv")
+y_train <- read_csv("y_train.csv")
+```
+
+## Machine Learning in Genetics and Genomics
+
+Both bioinformatics and biostatistics departments have, over the past decade, invested into the development of machine learning and statistical methods for the analysis of genomic data. This data varies in its scope, and could range from population genetics information, to microbiome data. Algorithms such as PhyloWGS and Canopy seek to model tumor evolution from multi sampled cell sequencing data. These models find SNV's between samples, and attempt to recreate a phylogeny. My next reflection plans to go more in depth into newer biostatistical methods in genetics and genomics.
+
+## Gene Expression Prediction
+
+3 years ago, the Tampere University of Technology released a competition involving the prediction of gene expression from histone modification signals.  Even currently, predicting gene expression from histone modication signals is a widely studied research topic. The dataset associated with the dataset is on Primary T CD8+ naive cells from peripheral blood, or the E047 celltype. Such data was obtained from the Roadmap Epigenomics Mapping Consortium database. 
+
+The dataset consists of training data that consists of: 
+
+- A set of data including the analysis of five core histone modification marks for a multitude of genes, diving the 10,000 basepair DNA regions around the transcription start site into binds of length 100 basepairs
+- A set of data with each gene, and whether it demonstrates high expression levels, or low expression levels
+
+My plan is to use the training data provided to create a model, which will be used to predict the gene expression levels for the provided test data set. I will also present the methods used by winning teams for this competition. Elementary data visualization is presented below:
+
+### Summary Statistics
+
+```{r}
+kable(summary(x_train))
+```
+
+
+### Finding the average value for 'H34KME3' for each gene over sampled sites, and visualizing its effects on gene expression
+
+
+```{r}
+avg_values <- x_train %>%
+  group_by(GeneId) %>%
+  summarize(h34kme3 = mean(H3K4me3)) %>%
+  full_join(y_train, by = "GeneId")
+
+ggplot(avg_values, aes(h34kme3, Prediction)) +
+  geom_jitter(alpha = .4) +
+  labs(title = "Gene Expression by Histone Level")
+```
+
+We see that lower gene expression is somewhat correlated with higher histone values for this specific histone. 
+
+### Linear Regression
+
+```{r}
+model.1 <- glm(Prediction ~ h34kme3, data = avg_values)
+summary(model.1)
+```
+
+Our model shows, with significance, that levels of the H34KME3 histone is negatively correlated with gene expression. 
